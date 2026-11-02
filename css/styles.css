@@ -1,0 +1,421 @@
+/* 꽉찬영양 설향 하우스 딸기 — 랜딩 페이지 */
+
+:root {
+  --bg: #FFF8F2;
+  --bg-warm: #F7ECDF;
+  --surface: #FFFFFF;
+  --ink: #2B2420;
+  --ink-muted: #6B5E54;
+  --ink-footer: #5C5046;
+  --line: #EADFD3;
+  --line-warm: #E0CFBC;
+  --green: #3E7B4F;
+  --green-dark: #2F6440;
+  --red: #E0303A;
+  --red-dark: #B8222B;
+  --kakao: #FEE500;
+  --kakao-hover: #F2D900;
+  --kakao-ink: #191919;
+
+  /* 사진 자리 색 */
+  --photo-berry: #B83A3F;
+  --photo-farm: #5E7F63;
+  --photo-farmer: #B08D6E;
+  --photo-box: #C9A77E;
+  --photo-review: #EADFD3;
+
+  --font-body: Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+  --font-hand: Gaegu, 'Apple SD Gothic Neo', 'Malgun Gothic', cursive;
+
+  --radius: 8px;
+  --container: 1120px;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.7;
+  word-break: keep-all;
+}
+
+a { color: var(--ink); }
+a:hover { color: var(--green); }
+
+h1, h2, h3, p, dl, dd, figure, blockquote { margin: 0; }
+
+/* ---------- 공통 ---------- */
+
+.container {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 64px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.section-head { display: flex; flex-direction: column; gap: 8px; }
+
+.eyebrow {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--green);
+}
+
+.section-title {
+  font-family: var(--font-hand);
+  font-weight: 700;
+  font-size: clamp(30px, 9vw, 48px);
+  line-height: 1.25;
+}
+
+.muted { color: var(--ink-muted); }
+.note { font-size: 14px; color: var(--ink-muted); }
+.center { text-align: center; }
+
+/* 아직 채우지 않은 내용 */
+.ph {
+  background: #FFF0B3;
+  color: #5C4400;
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-weight: 600;
+  font-family: var(--font-body);
+}
+
+.ic {
+  width: 24px;
+  height: 24px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  flex: none;
+}
+
+/* 사진 자리 */
+.photo {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  padding: 12px;
+  background: var(--photo-berry);
+}
+/* 실제 사진: 영역을 꽉 채우고, 비율이 달라도 찌그러지지 않게 잘라서 맞춤 */
+.photo > img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.photo--farm { background: var(--photo-farm); }
+.photo--farmer { background: var(--photo-farmer); aspect-ratio: 1 / 1; padding: 8px; }
+.photo--box { background: var(--photo-box); }
+.photo--review { background: var(--photo-review); }
+.photo__label {
+  background: var(--bg);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.4;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+/* 버튼 */
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 56px;
+  font-size: 17px;
+  font-weight: 700;
+  border-radius: var(--radius);
+  text-decoration: none;
+}
+.btn--order { background: var(--red); color: #FFFFFF; }
+.btn--order:hover { background: var(--red-dark); color: #FFFFFF; }
+.btn--kakao { background: var(--kakao); color: var(--kakao-ink); }
+.btn--kakao:hover { background: var(--kakao-hover); color: var(--kakao-ink); }
+
+/* 정보 목록 (dt/dd 한 줄) */
+.info-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
+  gap: 0 32px;
+  font-size: 15px;
+}
+.info-list > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 0;
+  border-top: 1px solid var(--line);
+}
+.info-list dt { font-weight: 600; }
+.info-list--warm > div { border-top-color: var(--line-warm); }
+
+/* ---------- 1. 히어로 ---------- */
+
+.hero {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+}
+.hero__photo { flex: 1 1 360px; min-width: 0; min-height: 360px; }
+.hero__body {
+  flex: 1 1 360px;
+  min-width: 0;
+  padding: 24px 20px 36px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 12px;
+}
+.hero__brand { font-size: 15px; font-weight: 700; color: var(--green); }
+.hero__title {
+  font-family: var(--font-hand);
+  font-weight: 700;
+  font-size: clamp(34px, 11.2vw, 72px);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+.hero__underline {
+  display: block;
+  width: 210px;
+  height: 10px;
+  fill: none;
+  stroke: var(--red);
+  stroke-width: 3;
+  stroke-linecap: round;
+}
+.hero__body .btn { margin-top: 8px; }
+
+/* ---------- 2. 신뢰 배지 ---------- */
+
+.badges {
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.badges__grid {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(150px, 100%), 1fr));
+  gap: 20px 16px;
+}
+.badge { display: flex; flex-direction: column; gap: 6px; color: var(--green); }
+.badge__text { color: var(--ink); line-height: 1.45; }
+.badge__text strong { display: block; font-size: 16px; font-weight: 700; }
+.badge__text span { font-size: 14px; color: var(--ink-muted); }
+
+/* ---------- 3. 왜 우리 딸기인가 ---------- */
+
+.why__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
+  gap: 28px;
+}
+.why__photo { min-height: 260px; }
+.why__body { display: flex; flex-direction: column; gap: 20px; }
+.brix {
+  border-top: 1px solid var(--ink);
+  border-bottom: 1px solid var(--line);
+  padding: 14px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.brix__label { font-size: 14px; font-weight: 600; color: var(--ink-muted); }
+.brix__value { font-family: var(--font-hand); font-size: 40px; font-weight: 700; line-height: 1.2; }
+.brix__value .ph { font-size: 26px; }
+.subhead { margin-bottom: 4px; font-size: 20px; font-weight: 700; line-height: 1.4; }
+
+/* ---------- 4. 농장 이야기 ---------- */
+
+.farm { max-width: var(--container); margin: 0 auto; }
+.farm__photo { min-height: 240px; }
+.farm__body { padding: 36px 20px 64px; display: flex; flex-direction: column; gap: 24px; }
+.farm__text { max-width: 640px; }
+.signature { font-family: var(--font-hand); font-size: 22px; font-weight: 700; line-height: 1.4; }
+.signature .ph { font-size: 15px; }
+.farm__photos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(150px, 100%), 1fr));
+  gap: 12px;
+}
+
+/* ---------- 5. 상품 안내 ---------- */
+
+.products { border-top: 1px solid var(--line); }
+.products__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+  gap: 20px;
+}
+.product {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.product__photo { height: 200px; padding: 10px; }
+.product__body { padding: 18px; display: flex; flex-direction: column; gap: 12px; flex-grow: 1; }
+.product__name { font-size: 20px; font-weight: 700; line-height: 1.4; }
+.product__desc { font-size: 15px; color: var(--ink-muted); }
+.product__row { display: flex; justify-content: space-between; align-items: center; font-size: 15px; }
+.product__row--first { padding-top: 10px; border-top: 1px solid var(--line); }
+.product__price { font-size: 18px; }
+.product .btn { margin-top: auto; min-height: 52px; }
+
+/* ---------- 6. 배송 안내 ---------- */
+
+.shipping { background: var(--bg-warm); }
+.shipping .eyebrow { color: var(--green-dark); }
+.steps {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
+  gap: 0 24px;
+}
+.step { display: flex; gap: 14px; }
+.step__marker { display: flex; flex-direction: column; align-items: center; flex: none; }
+.step__num {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--green);
+  color: #FFFFFF;
+  font-size: 15px;
+  font-weight: 700;
+}
+.step__num--last { background: var(--red); }
+.step__line { flex-grow: 1; width: 1px; background: var(--green); }
+.step__body { padding: 4px 0 24px; }
+.step__body h3 { font-size: 18px; font-weight: 700; line-height: 1.4; }
+.step__body p { font-size: 15px; }
+.shipping__photo { min-height: 220px; }
+
+/* ---------- 7. 후기 ---------- */
+
+.reviews .container { padding-bottom: 0; }
+.reviews__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+  gap: 20px;
+}
+.review { display: flex; flex-direction: column; gap: 10px; }
+.review__photo { height: 200px; padding: 10px; }
+.review figcaption { font-size: 14px; color: var(--ink-muted); }
+
+/* ---------- 8. 자주 묻는 질문 ---------- */
+
+.faq { max-width: 760px; gap: 20px; }
+.faq__list { border-bottom: 1px solid var(--line); }
+.faq details { border-top: 1px solid var(--line); }
+.faq summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 56px;
+  padding: 8px 0;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.45;
+}
+.faq summary::-webkit-details-marker { display: none; }
+.faq .chev { color: var(--green); }
+.faq details[open] .chev { transform: rotate(180deg); }
+.faq details p { padding: 0 36px 16px 0; font-size: 15px; }
+
+/* ---------- 9. 마무리 CTA ---------- */
+
+.closing { max-width: var(--container); margin: 0 auto; }
+.closing__photo { min-height: 240px; }
+.closing__body {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 36px 20px 56px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.closing__title {
+  font-family: var(--font-hand);
+  font-weight: 700;
+  font-size: clamp(32px, 9.6vw, 56px);
+  line-height: 1.25;
+}
+.closing__dates { margin-bottom: 8px; }
+.closing .info-list { margin-top: 16px; grid-template-columns: 1fr; }
+
+/* ---------- 푸터 ---------- */
+
+.footer { background: var(--bg-warm); }
+.footer__inner {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 28px 20px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--ink-footer);
+}
+.footer__inner strong { font-size: 14px; color: var(--ink); }
+.footer__inner a {
+  color: var(--ink);
+  font-weight: 600;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* ---------- 모바일 하단 고정 바 ---------- */
+
+.mbar {
+  position: sticky;
+  bottom: 0;
+  z-index: 10;
+  display: flex;
+  gap: 8px;
+  padding: 8px 12px calc(8px + env(safe-area-inset-bottom));
+  background: var(--surface);
+  border-top: 1px solid var(--line);
+}
+.mbar .btn { min-width: 0; min-height: 52px; }
+.mbar .btn--order { flex: 3 1 0; }
+.mbar .btn--kakao { flex: 2 1 0; gap: 4px; font-size: 15px; }
+.mbar .ic { width: 20px; height: 20px; }
+
+/* ---------- 데스크톱 ---------- */
+
+@media (min-width: 900px) {
+  .mbar { display: none; }
+  .step { flex-direction: column; }
+  .step__line { display: none; }
+}
